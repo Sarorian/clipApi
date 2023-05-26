@@ -28,7 +28,7 @@ app.post("/clips", (req, res) => {
         .create({
           clipUrl: req.body.clipUrl,
           clipName: req.body.clipName,
-          player: req.body.name,
+          player: req.body.player,
           game: req.body.game,
         })
         .then((clip) => {
