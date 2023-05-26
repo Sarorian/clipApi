@@ -23,11 +23,12 @@ app.post("/clips", (req, res) => {
       clipData
         .create({
           clipUrl: req.body.clipUrl,
-          name: req.body.name,
+          clipName: req.body.clipName,
+          player: req.body.name,
           game: req.body.game,
         })
         .then((clip) => {
-          res.status(201).json(clip);
+          res.status(200).json(clip);
         })
         .catch((e) => {
           console.error(e);
@@ -37,13 +38,13 @@ app.post("/clips", (req, res) => {
   });
 });
 
-app.get("/clips/name/:name", (req, res) => {
-  clipData.find({ name: req.params.name }).then((data) => {
+app.get("/clips/player/:player", (req, res) => {
+  clipData.find({ player: req.params.player }).then((data) => {
     if (data.length === 0) {
       res.status(404).json({
         status: 404,
         data: [],
-        message: `No clips from ${req.params.name}`,
+        message: `No clips from ${req.params.player}`,
       });
     } else {
       res.status(200).json(data);
@@ -65,15 +66,15 @@ app.get("/clips/game/:game", (req, res) => {
   });
 });
 
-app.get("/clips/name/:name/:game", (req, res) => {
+app.get("/clips/player/:player/:game", (req, res) => {
   clipData
-    .find({ game: req.params.game, name: req.params.name })
+    .find({ game: req.params.game, player: req.params.player })
     .then((data) => {
       if (data.length === 0) {
         res.status(404).json({
           status: 404,
           data: [],
-          message: `No ${req.params.game} clips from ${req.params.name} `,
+          message: `No ${req.params.game} clips from ${req.params.player} `,
         });
       } else {
         res.status(200).json(data);

@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 let clipDataSchema = mongoose.Schema({
   clipUrl: String,
-  name: String,
+  clipName: String,
+  player: String,
   game: String,
 });
 
