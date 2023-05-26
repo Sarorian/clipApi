@@ -11,6 +11,10 @@ const mongoose = require("mongoose"),
 
 app.use(bodyParser.json());
 
+const cors = require("cors");
+
+app.use(cors());
+
 app.get("/", (req, res) => {
   res.send("Trying to get squadtage clip data?");
 });
